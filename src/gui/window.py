@@ -22,8 +22,8 @@ class AplikasiKontak:
         self.refresh_kontak()
         self.refresh_statistik()
     
+    # Setup style untuk aplikasi
     def setup_style(self):
-        """Setup style untuk aplikasi"""
         self.style = ttk.Style()
         self.style.theme_use('clam')
         
@@ -38,8 +38,8 @@ class AplikasiKontak:
                            relief='raised',
                            borderwidth=1)
     
+    # Buat interface utama
     def create_gui(self):
-        """Buat interface utama"""
         # Header
         header_frame = ttk.Frame(self.root, style='Title.TLabel')
         header_frame.pack(fill='x', padx=10, pady=10)
@@ -76,8 +76,8 @@ class AplikasiKontak:
         # History
         self.create_history_tab(right_frame)
     
+    # Buat form input kontak
     def create_input_form(self, parent):
-        """Buat form input kontak"""
         form_frame = ttk.LabelFrame(parent, text="Form Kontak Baru", padding=10)
         form_frame.pack(fill='x', pady=(0, 10))
         
@@ -120,8 +120,8 @@ class AplikasiKontak:
         
         form_frame.columnconfigure(1, weight=1)
     
+    # Buat kontrol pencarian
     def create_search_controls(self, parent):
-        """Buat kontrol pencarian"""
         search_frame = ttk.LabelFrame(parent, text="Pencarian & Filter", padding=10)
         search_frame.pack(fill='x', pady=(0, 10))
         
@@ -144,8 +144,8 @@ class AplikasiKontak:
         self.filter_combo.pack(fill='x', pady=5)
         self.filter_combo.bind('<<ComboboxSelected>>', self.filter_kontak)
     
+    # Buat panel statistik
     def create_statistics(self, parent):
-        """Buat panel statistik"""
         stats_frame = ttk.LabelFrame(parent, text="Statistik Kontak", padding=10)
         stats_frame.pack(fill='x', pady=(0, 10))
         
@@ -156,8 +156,8 @@ class AplikasiKontak:
         self.stats_text.pack(fill='both', expand=True)
         self.stats_text.config(state='disabled')
     
+    # Buat daftar kontak dengan treeview
     def create_contact_list(self, parent):
-        """Buat daftar kontak dengan treeview"""
         list_frame = ttk.LabelFrame(parent, text="Daftar Kontak", padding=10)
         list_frame.pack(fill='both', expand=True, pady=(0, 10))
         
@@ -189,8 +189,8 @@ class AplikasiKontak:
         # Bind double click
         self.tree.bind('<Double-1>', self.on_tree_select)
     
+    # Buat tab history
     def create_history_tab(self, parent):
-        """Buat tab history"""
         history_frame = ttk.LabelFrame(parent, text="History Aktivitas", padding=10)
         history_frame.pack(fill='both', expand=True)
         
@@ -204,8 +204,8 @@ class AplikasiKontak:
         ttk.Button(history_frame, text="Refresh History", 
                   command=self.refresh_history).pack(pady=5)
     
+    # Refresh daftar kontak di treeview
     def refresh_kontak(self, kontak_list=None):
-        """Refresh daftar kontak di treeview"""
         if kontak_list is None:
             kontak_list = self.kontak_manager.ambil_semua_kontak()
         
@@ -217,8 +217,8 @@ class AplikasiKontak:
         for kontak in kontak_list:
             self.tree.insert('', 'end', values=kontak)
     
+    # Refresh statistik
     def refresh_statistik(self):
-        """Refresh statistik"""
         statistik = self.kontak_manager.statistik_kontak()
         
         self.stats_text.config(state='normal')
@@ -232,8 +232,8 @@ class AplikasiKontak:
         self.stats_text.insert('end', f"\n📊 TOTAL: {total_kontak} kontak")
         self.stats_text.config(state='disabled')
     
+    # Refresh history aktivitas
     def refresh_history(self):
-        """Refresh history aktivitas"""
         history = self.kontak_manager.ambil_history()
         
         self.history_text.config(state='normal')
@@ -245,8 +245,8 @@ class AplikasiKontak:
         
         self.history_text.config(state='disabled')
     
+    # Tambah kontak baru
     def tambah_kontak(self):
-        """Tambah kontak baru"""
         nama = self.nama_entry.get().strip()
         telepon = self.telepon_entry.get().strip()
         email = self.email_entry.get().strip()
@@ -266,8 +266,8 @@ class AplikasiKontak:
         except Exception as e:
             messagebox.showerror("Error", f"Gagal menambah kontak: {str(e)}")
     
+    # Edit kontak yang dipilih
     def edit_kontak(self):
-        """Edit kontak yang dipilih"""
         selected = self.tree.selection()
         if not selected:
             messagebox.showwarning("Peringatan", "Pilih kontak yang akan diedit!")
@@ -295,8 +295,8 @@ class AplikasiKontak:
         except Exception as e:
             messagebox.showerror("Error", f"Gagal mengedit kontak: {str(e)}")
     
+     # Hapus kontak yang dipilih
     def hapus_kontak(self):
-        """Hapus kontak yang dipilih"""
         selected = self.tree.selection()
         if not selected:
             messagebox.showwarning("Peringatan", "Pilih kontak yang akan dihapus!")
@@ -316,8 +316,8 @@ class AplikasiKontak:
             except Exception as e:
                 messagebox.showerror("Error", f"Gagal menghapus kontak: {str(e)}")
     
+    # Cari kontak berdasarkan keyword
     def cari_kontak(self):
-        """Cari kontak berdasarkan keyword"""
         keyword = self.search_entry.get().strip()
         if keyword:
             results = self.kontak_manager.cari_kontak(keyword)
@@ -325,8 +325,8 @@ class AplikasiKontak:
         else:
             self.refresh_kontak()
     
+    # Filter kontak berdasarkan kategori
     def filter_kontak(self, event=None):
-        """Filter kontak berdasarkan kategori"""
         kategori = self.filter_combo.get()
         if kategori == 'Semua':
             self.refresh_kontak()
@@ -334,8 +334,8 @@ class AplikasiKontak:
             results = self.kontak_manager.ambil_semua_kontak(kategori)
             self.refresh_kontak(results)
     
+    # Handle ketika kontak dipilih di treeview
     def on_tree_select(self, event):
-        """Handle ketika kontak dipilih di treeview"""
         selected = self.tree.selection()
         if selected:
             item = selected[0]
@@ -353,8 +353,8 @@ class AplikasiKontak:
             
             self.kategori_combo.set(values[4])
     
+    # Reset form ke keadaan kosong
     def reset_form(self):
-        """Reset form ke keadaan kosong"""
         self.nama_entry.delete(0, 'end')
         self.telepon_entry.delete(0, 'end')
         self.email_entry.delete(0, 'end')

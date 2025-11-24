@@ -10,8 +10,6 @@
 
 **Aplikasi manajemen kontak modern dengan GUI yang powerful dan fitur lengkap**
 
-[Fitur](#-fitur-unggulan) • [Demo](#-demo) • [Instalasi](#-instalasi) • [Penggunaan](#-penggunaan) • [Dokumentasi](#-dokumentasi)
-
 </div>
 
 ## 📋 Daftar Isi
@@ -19,7 +17,7 @@
 - [Gambaran Umum](#-gambaran-umum)
 - [Fitur Unggulan](#-fitur-unggulan)
 - [Instalasi](#-instalasi)
-- [ Penggunaan](#-penggunaan)
+- [Penggunaan](#-penggunaan)
 - [Contoh Data](#-contoh-data)
 - [FAQ](#-faq)
 
@@ -188,22 +186,6 @@ nama:John kategori:Keluarga
    - Klik "Export Selected"
    - Pilih format: CSV, JSON, atau TXT
 
-## 🏗️ Arsitektur
-
-### Data Flow
-
-```mermaid
-graph TD
-    A[User Input] --> B[GUI Layer]
-    B --> C[Validation]
-    C --> D[Business Logic]
-    D --> E[Database Operations]
-    E --> F[Data Persistence]
-    F --> G[Response Processing]
-    G --> H[UI Update]
-    H --> I[User Feedback]
-```
-
 ### Module Descriptions
 
 | Module | Description |
@@ -268,25 +250,6 @@ INSERT INTO kategori (nama, warna) VALUES
 
 ### Q: Support multiple user?
 **A:** Saat ini single user.
-
-### Troubleshooting
-
-**Masalah Umum dan Solusi:**
-
-1. **Database Error**
-   ```
-   Solution: Hapus file kontak.db dan restart aplikasi
-   ```
-
-2. **GUI Tidak Responsive**
-   ```
-   Solution: Check Python version (min 3.7) dan tkinter installation
-   ```
-
-3. **Import/Export Error**
-   ```
-   Solution: Pastikan file tidak sedang dibuka di aplikasi lain
-   ```
 
 ---
 

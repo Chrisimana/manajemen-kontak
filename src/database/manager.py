@@ -8,8 +8,8 @@ class DatabaseManager:
         self.db_path = db_path
         self.init_database()
     
+    # Inisialisasi database dan tabel
     def init_database(self):
-        """Inisialisasi database dan tabel"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         
@@ -53,16 +53,16 @@ class DatabaseManager:
         conn.commit()
         conn.close()
     
+    # Eksekusi query umum
     def execute_query(self, query, params=()):
-        """Eksekusi query umum"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute(query, params)
         conn.commit()
         conn.close()
     
+    # Ambil semua data
     def fetch_all(self, query, params=()):
-        """Ambil semua data"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute(query, params)
@@ -70,8 +70,8 @@ class DatabaseManager:
         conn.close()
         return results
     
+    # Log history aktivitas
     def log_history(self, aksi, detail=""):
-        """Log history aktivitas"""
         self.execute_query(
             'INSERT INTO history (aksi, detail) VALUES (?, ?)',
             (aksi, detail)

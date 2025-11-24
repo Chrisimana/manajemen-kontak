@@ -3,7 +3,6 @@ from gui.window import AplikasiKontak
 import sys
 
 def main():
-    """Fungsi utama untuk menjalankan aplikasi"""
     try:
         root = tk.Tk()
         app = AplikasiKontak(root)

@@ -7,8 +7,8 @@ class Kontak:
         self.db = DatabaseManager()
         self.kategori_list = self.ambil_semua_kategori()
     
+    # Ambil semua kontak, bisa difilter berdasarkan kategori
     def ambil_semua_kontak(self, kategori=None):
-        """Ambil semua kontak, bisa difilter berdasarkan kategori"""
         if kategori:
             query = 'SELECT * FROM kontak WHERE kategori = ? ORDER BY nama'
             return self.db.fetch_all(query, (kategori,))
@@ -16,8 +16,8 @@ class Kontak:
             query = 'SELECT * FROM kontak ORDER BY nama'
             return self.db.fetch_all(query)
     
+    # Ambil kontak berdasarkan ID
     def ambil_kontak_by_id(self, id_kontak):
-        """Ambil kontak berdasarkan ID"""
         query = 'SELECT * FROM kontak WHERE id = ?'
         result = self.db.fetch_all(query, (id_kontak,))
         return result[0] if result else None
@@ -47,8 +47,8 @@ class Kontak:
         # Log history
         self.db.log_history("EDIT", f"Kontak {nama} diubah")
     
+    # Hapus kontak
     def hapus_kontak(self, id_kontak):
-        """Hapus kontak"""
         kontak = self.ambil_kontak_by_id(id_kontak)
         if kontak:
             query = 'DELETE FROM kontak WHERE id = ?'
@@ -67,14 +67,14 @@ class Kontak:
         search_term = f'%{keyword}%'
         return self.db.fetch_all(query, (search_term, search_term, search_term))
     
+    # Ambil semua kategori
     def ambil_semua_kategori(self):
-        """Ambil semua kategori"""
         query = 'SELECT nama FROM kategori ORDER BY nama'
         results = self.db.fetch_all(query)
         return [result[0] for result in results]
     
+    # Ambil history aktivitas
     def ambil_history(self, limit=50):
-        """Ambil history aktivitas"""
         query = 'SELECT * FROM history ORDER BY timestamp DESC LIMIT ?'
         return self.db.fetch_all(query, (limit,))
     
