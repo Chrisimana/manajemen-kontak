@@ -12,7 +12,7 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    print("🚀 Memulai Aplikasi Manajemen Kontak Pro...")
+    print("🚀 Memulai Aplikasi Manajemen Kontak...")
     print("✨ Fitur Super Keren:")
     print("   • GUI Modern dengan Tkinter")
     print("   • Database SQLite")
