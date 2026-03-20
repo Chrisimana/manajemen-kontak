@@ -19,8 +19,8 @@
 **Manajemen Kontak** adalah aplikasi berbasis desktop yang dikembangkan sebagai bagian dari persyaratan untuk mendapatkan sertifikat dari Kelas.work by Kelas.com. Aplikasi ini dirancang untuk membantu pengguna mengelola kontak-kontak penting mereka dengan antarmuka yang modern, intuitif, dan kaya fitur.
 
 Dibangun dengan Tkinter untuk antarmuka pengguna dan SQLite untuk penyimpanan data, aplikasi ini memungkinkan pengguna untuk:
-- Menambah, mengedit, dan menghapus** kontak
-- Mengelompokkan kontak** berdasarkan kategori
+- Menambah, mengedit, dan menghapus kontak
+- Mengelompokkan kontak berdasarkan kategori
 - Mencari kontak berdasarkan nama, telepon, atau email
 - Memfilter kontak berdasarkan kategori
 - Melihat statistik kontak per kategori
